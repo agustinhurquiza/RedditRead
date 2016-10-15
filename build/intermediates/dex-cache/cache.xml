@@ -304,7 +304,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="d37438a3adbd36a06644e1221aa835f6c5e6422e">
+        sha1="f2083992314abfad0ab27442c8200b0a138fc4d1">
         <dex dex="/home/agustin/AndroidStudioProjects/ReditRead/app/build/intermediates/pre-dexed/debug/instant-run_71147a662374cc53411f6e91157d587a5ef72c8f.jar" />
     </item>
     <item
@@ -313,7 +313,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="90784991e6aadf6bd2e833d894b6f24923325c19">
+        sha1="9f0cb38fd66be68d89a4b11846410131d045dcd3">
         <dex dex="/home/agustin/AndroidStudioProjects/ReditRead/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_73cbcce3d26bb3de2bafb59e5f3664926072b984.jar" />
     </item>
     <item
