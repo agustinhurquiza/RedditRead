@@ -85,7 +85,8 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+        viewHolder.Image.setVisibility(View.GONE);
+        viewHolder.Progress.setVisibility(View.VISIBLE);
         DowloadImagenAsyncTaks dw = new DowloadImagenAsyncTaks();
         dw.setImageView(viewHolder.Image, viewHolder.Progress);
         PostModel postModel = myPostModelList.get(position);
