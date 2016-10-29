@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.AsyncTask;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,7 +98,9 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         URL[] urls = new URL[1];
         urls[0] = postModel.getmImage();
         dw.execute(urls);
-        viewHolder.Date.setText(toDate(postModel.getmDate()));
+        long now = System.currentTimeMillis();
+        CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(postModel.getmDate(), now, DateUtils.MINUTE_IN_MILLIS);
+        viewHolder.Date.setText(relativeTime);
         viewHolder.Sub.setText(postModel.getmSub());
 
 
@@ -110,34 +113,6 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         return Integer.toString(comm) + "  Comentarios";
     }
 
-    public String toDate(Date date){
-        Date horaActual = new Date();
-        long different = horaActual.getTime() - date.getTime();
-
-        long secondsInMilli = 1000;
-        long minutesInMilli = secondsInMilli * 60;
-        long hoursInMilli = minutesInMilli * 60;
-        long daysInMilli = hoursInMilli * 24;
-
-        long elapsedDays = different / daysInMilli;
-        different = different % daysInMilli;
-
-        long elapsedHours = different / hoursInMilli;
-        different = different % hoursInMilli;
-
-        long elapsedMinutes = different / minutesInMilli;
-        different = different % minutesInMilli;
-
-        long elapsedSeconds = different / secondsInMilli;
-        if(elapsedDays >= 1)
-            return ("Hace " + Integer.toString((int) elapsedDays) + " dias");
-            else if(elapsedHours < 24 && elapsedHours >= 1)
-            return ("Hace " + Integer.toString((int) elapsedHours) + " Horas");
-        else if(elapsedMinutes < 60 && elapsedMinutes >= 1)
-            return ("Hace " + Integer.toString((int) elapsedMinutes) + " Minutos");
-        else
-            return ("Hace " + Integer.toString((int) elapsedSeconds) + " Segundos");
-    }
 
     @Override
     public boolean isEmpty() {
@@ -163,6 +138,8 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
             URL url = params[0];
             Bitmap bitmap = null;
             HttpURLConnection connection = null;
+            if(params[0] == null)
+                return null;
             try {
                 connection = (HttpURLConnection) url.openConnection();
                 InputStream is = connection.getInputStream();

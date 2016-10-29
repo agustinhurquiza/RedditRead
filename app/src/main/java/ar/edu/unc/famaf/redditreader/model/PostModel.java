@@ -12,12 +12,12 @@ import java.util.StringTokenizer;
 public class PostModel {
     private String mTitle;
     private String mAuthor;
-    private Date mDate;
+    private long mDate;
     private String mSub;
     private int mNumberOfComments;
     private URL mImage;
 
-    public PostModel(String mTitle, String mAuthor, Date mDate, String mSub,
+    public PostModel(String mTitle, String mAuthor, long mDate, String mSub,
                      int mNumberOfComments, URL mImage) {
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
@@ -55,11 +55,11 @@ public class PostModel {
         this.mAuthor = mAuthor;
     }
 
-    public Date getmDate() {
+    public long getmDate() {
         return mDate;
     }
 
-    public void setmDate(Date mDate) {
+    public void setmDate(long mDate) {
         this.mDate = mDate;
     }
 
