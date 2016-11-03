@@ -1,6 +1,8 @@
 package ar.edu.unc.famaf.redditreader.model;
 
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -9,13 +11,14 @@ import java.net.URL;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-public class PostModel {
+public class PostModel  {
     private String mTitle;
     private String mAuthor;
     private long mDate;
     private String mSub;
     private int mNumberOfComments;
     private URL mImage;
+
 
     public PostModel(String mTitle, String mAuthor, long mDate, String mSub,
                      int mNumberOfComments, URL mImage) {
@@ -78,4 +81,5 @@ public class PostModel {
     public void setmImage(URL mImage) {
         this.mImage = mImage;
     }
+
 }
