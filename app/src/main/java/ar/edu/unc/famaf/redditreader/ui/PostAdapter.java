@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import ar.edu.unc.famaf.redditreader.backend.Querys;
 import ar.edu.unc.famaf.redditreader.backend.RedditDBHelper;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
 
+import static ar.edu.unc.famaf.redditreader.backend.Querys.get_imagen;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
 /**
@@ -100,9 +102,19 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         viewHolder.Title.setText(postModel.getmTitle());
         viewHolder.Author.setText(postModel.getmAuthor());
         viewHolder.Comments.setText(toComent((postModel.getmNumberOfComments())));
+
+        final RedditDBHelper bdHelper = new RedditDBHelper(getContext(), DATABASE_VERSION);
+        final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
         URL[] urls = new URL[1];
         urls[0] = postModel.getmImage();
-        dw.execute(urls);
+        Bitmap bitmap = get_imagen(dbW, urls[0]);
+        if(bitmap == null)
+            dw.execute(urls);
+        else{
+            viewHolder.Image.setVisibility(View.VISIBLE);
+            viewHolder.Progress.setVisibility(View.GONE);
+            viewHolder.Image.setImageBitmap(bitmap);
+        }
         long now = System.currentTimeMillis();
         CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(postModel.getmDate(), now, DateUtils.MINUTE_IN_MILLIS);
         viewHolder.Date.setText(relativeTime);
@@ -151,7 +163,8 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
             mUrl = params[0];
             Bitmap bitmap = null;
             HttpURLConnection connection = null;
-            if(params[0] == null)
+
+            if (params[0] == null)
                 return null;
             try {
                 connection = (HttpURLConnection) url.openConnection();
@@ -160,8 +173,10 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
             } catch (IOException e) {
                 return null;
             }
+
             return bitmap;
         }
+
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             mProgressBar.setVisibility(View.GONE);
@@ -169,13 +184,8 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
             final RedditDBHelper bdHelper = new RedditDBHelper(mContext, DATABASE_VERSION);
             final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
             if(bitmap == null) {
-                bitmap = Querys.get_imagen(dbW, mUrl);
-                if(bitmap == null)
-                    mImageView.setImageResource(R.mipmap.ic_launcher);
-                else
-                    mImageView.setImageBitmap(bitmap);
-            }
-            else {
+                mImageView.setImageResource(R.mipmap.ic_launcher);
+            } else{
                 mImageView.setImageBitmap(bitmap);
                 Querys.add_imagen(dbW, bitmap, mUrl);
             }

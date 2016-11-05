@@ -19,13 +19,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Backend.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Backend.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/GetTopPostsTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/GetTopPostsTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/IteratorListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/IteratorListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Querys.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Querys.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/RedditDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/RedditDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/NewsActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/NewsActivityFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
@@ -85,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Querys.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Querys.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Querys.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="118" column="59" selection-start-line="118" selection-start-column="59" selection-end-line="118" selection-end-column="59" />
+            <state relative-caret-position="221">
+              <caret line="119" column="64" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PostAdapter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PostAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="181" column="8" selection-start-line="181" selection-start-column="8" selection-end-line="181" selection-end-column="8" />
+            <state relative-caret-position="341">
+              <caret line="111" column="29" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -1761,8 +1754,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/IteratorListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/NewsActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/RedditDBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Querys.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java" />
       </list>
     </option>
   </component>
@@ -1890,7 +1883,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="1215fccd7aa81905" />
+    <property name="device.picker.selection" value="4C3GSQ159J075134" />
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
@@ -2200,7 +2193,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="743" extended-state="7" />
+    <frame x="0" y="0" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -2252,18 +2245,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java</url>
-          <line>178</line>
+          <line>95</line>
           <properties />
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java</url>
-          <line>166</line>
-          <properties />
-          <option name="timeStamp" value="28" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="29" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2457,14 +2444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="181" column="8" selection-start-line="181" selection-start-column="8" selection-end-line="181" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/RedditDBHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4">
@@ -2477,11 +2456,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/backend/Querys.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="118" column="59" selection-start-line="118" selection-start-column="59" selection-end-line="118" selection-end-column="59" />
+        <state relative-caret-position="221">
+          <caret line="119" column="64" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ar/edu/unc/famaf/redditreader/ui/PostAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="111" column="29" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
