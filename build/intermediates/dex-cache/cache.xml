@@ -3,15 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_dbefa03339bf1c6d5e4942f509383bf7272fab2e.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -21,17 +12,17 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="c594fdddd541be96f90c8e10c0141dfb6bde3c15">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/instant-run_99fca572adec1fddc2c5aaf4a541c4df9bc5e154.jar" />
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_dbefa03339bf1c6d5e4942f509383bf7272fab2e.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
@@ -39,30 +30,30 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.1_363e85d90faf34f718f453e6281236141e60e417.jar" />
+        sha1="282de2966e832fd5aa212ba0dac5044a5d7d98e8">
+        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/instant-run_99fca572adec1fddc2c5aaf4a541c4df9bc5e154.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_c5d3d6b1fef13eda073910614941cc89a0c0c094.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
         <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_9732f30c9b3efa2694bcf9394358f60d541de5ed.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_59163b74dc2ca64b8e58868c1a1fecee8eb6e807.jar" />
     </item>
     <item
         is-multidex="false"
@@ -84,6 +75,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_42e3dd4af3f8de7a100ab2f10d46dccb375e9601.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/agustin/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -94,20 +94,11 @@
     <item
         is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="867dad63c33388ff8c7644b236579355036d075f">
         <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_f034229e9348b3369da83aea8bba5a8d32c544f1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_c5d3d6b1fef13eda073910614941cc89a0c0c094.jar" />
     </item>
     <item
         is-multidex="false"
@@ -129,15 +120,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_42e3dd4af3f8de7a100ab2f10d46dccb375e9601.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -156,12 +138,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_5af9a04a8958dba4bf730f5907901d54b78d90ed.jar" />
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_59163b74dc2ca64b8e58868c1a1fecee8eb6e807.jar" />
     </item>
     <item
         is-multidex="false"
@@ -178,148 +160,13 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="c46dfb230dae8188ae393ec1625836f9444cd1da">
+        sha1="87f260e8522925ac1ad2134bf491b798198dfd58">
         <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_c609d15fb477e752aeea03705e9afa5a58a7805f.jar" />
     </item>
     <item
         is-multidex="false"
         jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
         jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_951fa4478e735722a2f98d420736fb97ba71a288.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.1_a111e788c594439bc4937f88a2777e6e3adb556e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.1_a49cf2c9b2aa312eb1970cda405d55b6d8b84c39.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_dbefa03339bf1c6d5e4942f509383bf7272fab2e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_d5c109afaababc6270792172d4dd318794392ed8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/design/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.1_c5d3d6b1fef13eda073910614941cc89a0c0c094.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_9732f30c9b3efa2694bcf9394358f60d541de5ed.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.1_65e6b728a9f5c0682d1cf643569a3dcf69d696bd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.1_42e3dd4af3f8de7a100ab2f10d46dccb375e9601.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_b4cd48bfe68f1a6a2e41aad9c4c5cd3a5c8955be.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.1_3f4d7a30b53111bc6c2536836451ac0224e70d18.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_f034229e9348b3369da83aea8bba5a8d32c544f1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_884525a5e01ec0c8a30ef909db36c94dd4db96e0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_59163b74dc2ca64b8e58868c1a1fecee8eb6e807.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.1_7014b378da61a1568955aea4152608c1d0c27ede.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="false"
         optimize="true"
         revision="24.0.2"
         sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">

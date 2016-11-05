@@ -1,12 +1,11 @@
 package ar.edu.unc.famaf.redditreader.ui;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,10 @@ import android.widget.ListView;
 import ar.edu.unc.famaf.redditreader.R;
 import ar.edu.unc.famaf.redditreader.backend.Backend;
 import ar.edu.unc.famaf.redditreader.backend.IteratorListener;
+import ar.edu.unc.famaf.redditreader.backend.RedditDBHelper;
 import ar.edu.unc.famaf.redditreader.model.Listing;
 
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
 
 /**
@@ -38,20 +39,12 @@ public class NewsActivityFragment extends Fragment implements IteratorListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        boolean  internet = isOnline();
         View rootview = inflater.inflate(R.layout.fragment_news, container, false);
-
         list = (ListView) rootview.findViewById(R.id.post);
-        if(isOnline()) {
             Backend backend = Backend.getInstance();
-            backend.getTopPosts(this);
-        }
-        else {
+            backend.getTopPosts(this, internet, getContext());
 
-            new AlertDialog.Builder(getContext())
-                    .setMessage("No internet connection")
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
         return rootview;
     }
 
