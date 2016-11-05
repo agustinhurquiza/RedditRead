@@ -2,7 +2,6 @@ package ar.edu.unc.famaf.redditreader.backend;
 
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -17,18 +16,18 @@ import java.util.List;
 import ar.edu.unc.famaf.redditreader.model.Listing;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
 
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.AUTHOR_TABLE;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATE_TABLE;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_B_TABLE;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_TABLE;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.NCOMENT_TABLE;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.SUB_TABLE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.AUTHOR;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_BITMAP;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_URL;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.NCOMENT;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.SUB;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TABLE_NAME;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TITLE_TABLE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TITLE;
 
 public class Querys {
 
-    public static void insert(SQLiteDatabase db, Listing listing) {
+    public static void insert_posts(SQLiteDatabase db, Listing listing) {
         ContentValues values =  new ContentValues();
         List<PostModel> list = listing.getPosts();
 
@@ -43,12 +42,12 @@ public class Querys {
             if(list.get(i).getmImage() != null)
                 mImage = list.get(i).getmImage().toString();
 
-            values.put(TITLE_TABLE, mTitle);
-            values.put(AUTHOR_TABLE, mAuthor);
-            values.put(DATE_TABLE, mDate);
-            values.put(SUB_TABLE, mSub);
-            values.put(NCOMENT_TABLE, mNumberOfComments);
-            values.put(IMAGE_TABLE, mImage);
+            values.put(TITLE, mTitle);
+            values.put(AUTHOR, mAuthor);
+            values.put(DATE, mDate);
+            values.put(SUB, mSub);
+            values.put(NCOMENT, mNumberOfComments);
+            values.put(IMAGE_URL, mImage);
             db.insert(TABLE_NAME, null, values);
         }
 
@@ -58,7 +57,7 @@ public class Querys {
         db.delete(TABLE_NAME, null, null);
     }
 
-    public static List<PostModel> getPost(SQLiteDatabase db) throws MalformedURLException {
+    public static List<PostModel> getPosts(SQLiteDatabase db) throws MalformedURLException {
         ArrayList<PostModel> list = new ArrayList<>();
         String mTitle;
         String mAuthor;
@@ -69,12 +68,12 @@ public class Querys {
         Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
         if (c.moveToFirst()) {
             do {
-                mTitle = c.getString(c.getColumnIndex(TITLE_TABLE));
-                mAuthor = c.getString(c.getColumnIndex(AUTHOR_TABLE));
-                mDate = c.getLong(c.getColumnIndex(DATE_TABLE));
-                mSub = c.getString(c.getColumnIndex(SUB_TABLE));
-                mNumberOfComents = c.getInt(c.getColumnIndex(NCOMENT_TABLE));
-                mImage = c.getString(c.getColumnIndex(IMAGE_TABLE));
+                mTitle = c.getString(c.getColumnIndex(TITLE));
+                mAuthor = c.getString(c.getColumnIndex(AUTHOR));
+                mDate = c.getLong(c.getColumnIndex(DATE));
+                mSub = c.getString(c.getColumnIndex(SUB));
+                mNumberOfComents = c.getInt(c.getColumnIndex(NCOMENT));
+                mImage = c.getString(c.getColumnIndex(IMAGE_URL));
                 try {
                     list.add(new PostModel(mTitle, mAuthor, mDate, mSub, mNumberOfComents, new URL(mImage)));
                 } catch (MalformedURLException e) {
@@ -108,26 +107,26 @@ public class Querys {
     }
 
     // Dado un bitmap lo agrega a la base de dato.
-   public static void add_imagen(SQLiteDatabase bd, Bitmap bitmap, URL url){
+   public static void add_image(SQLiteDatabase bd, Bitmap bitmap, URL url){
        ContentValues values = new ContentValues();
-       values.put(RedditDBHelper.IMAGE_B_TABLE, getBytes(bitmap));
+       values.put(RedditDBHelper.IMAGE_BITMAP, getBytes(bitmap));
 
-       String whereClause = IMAGE_TABLE + "=\"" + url.toString()+ "\";";
+       String whereClause = IMAGE_URL + "=\"" + url.toString()+ "\";";
        bd.update(RedditDBHelper.TABLE_NAME, values, whereClause, null);
    }
 
     // Dado un url trae el bitmap correspondiente al mismo.
-    public static Bitmap get_imagen(SQLiteDatabase bd,  URL url) {
+    public static Bitmap get_image(SQLiteDatabase bd, URL url) {
         Bitmap result = null;
-        String whereClause = IMAGE_TABLE + "= \"" + url.toString()+ "\"";
+        String whereClause = IMAGE_URL + "= \"" + url.toString()+ "\"";
         Cursor c = bd.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + whereClause +";", null);
         if (!c.moveToFirst()) {
             c.close();
             return null;
         }
-        if(c.isNull(c.getColumnIndex(IMAGE_B_TABLE)))
+        if(c.isNull(c.getColumnIndex(IMAGE_BITMAP)))
             return null;
-        result = getImage(c.getBlob(c.getColumnIndex(IMAGE_B_TABLE)));
+        result = getImage(c.getBlob(c.getColumnIndex(IMAGE_BITMAP)));
         c.close();
         return result;
     }

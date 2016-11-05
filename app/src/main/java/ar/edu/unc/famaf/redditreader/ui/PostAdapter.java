@@ -4,14 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 
 import ar.edu.unc.famaf.redditreader.R;
@@ -28,7 +24,7 @@ import ar.edu.unc.famaf.redditreader.backend.Querys;
 import ar.edu.unc.famaf.redditreader.backend.RedditDBHelper;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
 
-import static ar.edu.unc.famaf.redditreader.backend.Querys.get_imagen;
+import static ar.edu.unc.famaf.redditreader.backend.Querys.get_image;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
 /**
@@ -107,7 +103,7 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
         URL[] urls = new URL[1];
         urls[0] = postModel.getmImage();
-        Bitmap bitmap = get_imagen(dbW, urls[0]);
+        Bitmap bitmap = get_image(dbW, urls[0]);
         if(bitmap == null)
             dw.execute(urls);
         else{
@@ -187,7 +183,7 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
                 mImageView.setImageResource(R.mipmap.ic_launcher);
             } else{
                 mImageView.setImageBitmap(bitmap);
-                Querys.add_imagen(dbW, bitmap, mUrl);
+                Querys.add_image(dbW, bitmap, mUrl);
             }
         }
     }

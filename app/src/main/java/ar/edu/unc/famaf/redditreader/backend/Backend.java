@@ -3,8 +3,6 @@ package ar.edu.unc.famaf.redditreader.backend;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.IOError;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -44,8 +42,8 @@ public class Backend {
                     if (listing != null)
                         try {
                             Querys.delete_posts(dbW);
-                            Querys.insert(dbW, listing);
-                            List<PostModel> list = Querys.getPost(dbR);
+                            Querys.insert_posts(dbW, listing);
+                            List<PostModel> list = Querys.getPosts(dbR);
                             listing.setPosts(list);
                             iteratorListener.getNextPost(listing);
                         } catch (MalformedURLException e) {
@@ -60,7 +58,7 @@ public class Backend {
 
         }else {
             try {
-                List<PostModel> list = Querys.getPost(dbR);
+                List<PostModel> list = Querys.getPosts(dbR);
                 Listing listing = new Listing("0","0",list);
                 iteratorListener.getNextPost(listing);
             } catch (MalformedURLException e) {
