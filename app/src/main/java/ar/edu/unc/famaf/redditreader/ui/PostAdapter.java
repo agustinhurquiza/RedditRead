@@ -1,6 +1,7 @@
 package ar.edu.unc.famaf.redditreader.ui;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -22,7 +23,11 @@ import java.util.Date;
 import java.util.List;
 
 import ar.edu.unc.famaf.redditreader.R;
+import ar.edu.unc.famaf.redditreader.backend.Querys;
+import ar.edu.unc.famaf.redditreader.backend.RedditDBHelper;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
+
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
 /**
  * Created by agustin on 10/10/16.
@@ -88,7 +93,7 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         }
         viewHolder.Image.setVisibility(View.GONE);
         viewHolder.Progress.setVisibility(View.VISIBLE);
-        DowloadImagenAsyncTaks dw = new DowloadImagenAsyncTaks();
+        DowloadImagenAsyncTaks dw = new DowloadImagenAsyncTaks(getContext());
         dw.setImageView(viewHolder.Image, viewHolder.Progress);
         PostModel postModel = myPostModelList.get(position);
 
@@ -123,9 +128,16 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
 
         ImageView mImageView;
         ProgressBar mProgressBar;
+        Context mContext = null;
+        URL mUrl = null;
+
         public void setImageView(ImageView imageView, ProgressBar progressBar) {
             mImageView = imageView;
             mProgressBar = progressBar;
+        }
+
+        public DowloadImagenAsyncTaks(Context context) {
+            mContext = context;
         }
 
         @Override
@@ -134,8 +146,9 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         }
 
         @Override
-    protected Bitmap doInBackground(URL... params) {
+        protected Bitmap doInBackground(URL... params) {
             URL url = params[0];
+            mUrl = params[0];
             Bitmap bitmap = null;
             HttpURLConnection connection = null;
             if(params[0] == null)
@@ -153,10 +166,19 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         protected void onPostExecute(Bitmap bitmap) {
             mProgressBar.setVisibility(View.GONE);
             mImageView.setVisibility(View.VISIBLE);
-            if(bitmap == null)
-                mImageView.setImageResource(R.mipmap.ic_launcher);
-            else
+            final RedditDBHelper bdHelper = new RedditDBHelper(mContext, DATABASE_VERSION);
+            final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
+            if(bitmap == null) {
+                bitmap = Querys.get_imagen(dbW, mUrl);
+                if(bitmap == null)
+                    mImageView.setImageResource(R.mipmap.ic_launcher);
+                else
+                    mImageView.setImageBitmap(bitmap);
+            }
+            else {
                 mImageView.setImageBitmap(bitmap);
+                Querys.add_imagen(dbW, bitmap, mUrl);
+            }
         }
     }
 

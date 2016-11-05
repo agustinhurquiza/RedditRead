@@ -5,11 +5,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import ar.edu.unc.famaf.redditreader.model.Listing;
@@ -17,6 +19,7 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.AUTHOR_TABLE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATE_TABLE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_B_TABLE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_TABLE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.NCOMENT_TABLE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.SUB_TABLE;
@@ -82,4 +85,52 @@ public class Querys {
         c.close();
         return list;
     }
+
+    // Chequea si la base de datos es vacia.
+    public static boolean is_empty(SQLiteDatabase db){
+        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
+        if (c.moveToFirst()) {
+            c.close();
+            return true;
+        }
+        c.close();
+        return false;
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,0, stream);
+        return stream.toByteArray();
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    // Dado un bitmap lo agrega a la base de dato.
+   public static void add_imagen(SQLiteDatabase bd, Bitmap bitmap, URL url){
+       ContentValues values = new ContentValues();
+       values.put(RedditDBHelper.IMAGE_B_TABLE, getBytes(bitmap));
+
+       String whereClause = IMAGE_TABLE + "=\"" + url.toString()+ "\";";
+       bd.update(RedditDBHelper.TABLE_NAME, values, whereClause, null);
+   }
+
+    // Dado un url trae el bitmap correspondiente al mismo.
+    public static Bitmap get_imagen(SQLiteDatabase bd,  URL url) {
+        Bitmap result = null;
+        String whereClause = IMAGE_TABLE + "= \"" + url.toString()+ "\"";
+        Cursor c = bd.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + whereClause +";", null);
+        if (!c.moveToFirst()) {
+            c.close();
+            return null;
+        }
+        if(c.isNull(c.getColumnIndex(IMAGE_B_TABLE)))
+            return null;
+        result = getImage(c.getBlob(c.getColumnIndex(IMAGE_B_TABLE)));
+        c.close();
+        return result;
+    }
+
 }
+

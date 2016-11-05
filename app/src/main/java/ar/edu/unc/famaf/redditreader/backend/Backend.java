@@ -3,6 +3,8 @@ package ar.edu.unc.famaf.redditreader.backend;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.IOError;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -35,17 +37,22 @@ public class Backend {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+
             new GetTopPostsTask() {
                 @Override
                 protected void onPostExecute(Listing listing) {
-                    try {
-                        Querys.delete_posts(dbW);
-                        Querys.insert(dbW, listing);
-                        List<PostModel> list = Querys.getPost(dbR);
-                        listing.setPosts(list);
-                        iteratorListener.getNextPost(listing);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                    if (listing != null)
+                        try {
+                            Querys.delete_posts(dbW);
+                            Querys.insert(dbW, listing);
+                            List<PostModel> list = Querys.getPost(dbR);
+                            listing.setPosts(list);
+                            iteratorListener.getNextPost(listing);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    else {
+                        iteratorListener.error();
                     }
                 }
 

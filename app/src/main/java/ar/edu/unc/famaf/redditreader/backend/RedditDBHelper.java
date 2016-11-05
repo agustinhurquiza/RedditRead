@@ -15,6 +15,7 @@ public class RedditDBHelper extends SQLiteOpenHelper {
     public static final String SUB_TABLE = "sub";
     public static final String NCOMENT_TABLE = "ncoment";
     public static final String IMAGE_TABLE = "image";
+    public static final String IMAGE_B_TABLE ="imageB";
     public static final int DATABASE_VERSION = 1;
 
     public RedditDBHelper(Context context, int version) {
@@ -28,8 +29,9 @@ public class RedditDBHelper extends SQLiteOpenHelper {
                                 + TITLE_TABLE + " text no null, "
                                 + AUTHOR_TABLE + " text no null, "
                                 + DATE_TABLE + " integer no null, "
-                                + SUB_TABLE + " text no null, "  + NCOMENT_TABLE
-                                + " integer no null, " + IMAGE_TABLE + " text no null);";
+                                + SUB_TABLE + " text no null, "
+                                + IMAGE_B_TABLE + " blob, "
+                                + NCOMENT_TABLE + " integer no null, " + IMAGE_TABLE + " text no null);";
         db.execSQL(createSentence);
     }
 
