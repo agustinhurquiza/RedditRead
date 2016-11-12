@@ -31,7 +31,7 @@ public class RedditDBHelper extends SQLiteOpenHelper {
                                 + DATE + " integer no null, "
                                 + SUB + " text no null, "
                                 + IMAGE_BITMAP + " blob, "
-                                + NCOMENT + " integer no null, " + IMAGE_URL + " text no null);";
+                                + NCOMENT + " integer no null, " + IMAGE_URL + " text );";
         db.execSQL(createSentence);
     }
 

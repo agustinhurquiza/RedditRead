@@ -13,6 +13,8 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
 public class Backend {
+    private int nextPost = -1;
+    private static final int  QUANTYTI = 5;
     private static Backend ourInstance = new Backend();
 
     public static Backend getInstance() {
@@ -24,12 +26,12 @@ public class Backend {
 
     }
 
-    public void getTopPosts(final IteratorListener iteratorListener, boolean internet, Context context) {
+    public void getTopPosts(final PostsIteratorListener listener, boolean internet, Context context) throws MalformedURLException {
         URL[] urls = new URL[1];
-        final  RedditDBHelper bdHelper = new RedditDBHelper(context, DATABASE_VERSION);
+        final RedditDBHelper bdHelper = new RedditDBHelper(context, DATABASE_VERSION);
         final SQLiteDatabase dbR = bdHelper.getReadableDatabase();
         final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
-        if(internet) {
+        if (internet) {
             try {
                 urls[0] = new URL("https://www.reddit.com/top/.json?limit=50");
             } catch (MalformedURLException e) {
@@ -43,27 +45,39 @@ public class Backend {
                         try {
                             Querys.delete_posts(dbW);
                             Querys.insert_posts(dbW, listing);
-                            List<PostModel> list = Querys.getPosts(dbR);
+                            List<PostModel> list = Querys.getPosts(dbR, 0);
+                            nextPost = QUANTYTI;
                             listing.setPosts(list);
-                            iteratorListener.getNextPost(listing);
+                            listener.setAdapter(list);
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
                     else {
-                        iteratorListener.error();
+                        listener.error();
                     }
                 }
 
             }.execute(urls);
 
-        }else {
-            try {
-                List<PostModel> list = Querys.getPosts(dbR);
-                Listing listing = new Listing("0","0",list);
-                iteratorListener.getNextPost(listing);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+        } else {
+            List<PostModel> list = Querys.getPosts(dbR, 0);
+            Listing listing = new Listing("0","0",list);
+            listener.setAdapter(list);
+            nextPost = QUANTYTI;
+
+        }
+    }
+
+
+    public void getNextPosts(final PostsIteratorListener listener, Context context, boolean internet) throws MalformedURLException {
+        final  RedditDBHelper bdHelper = new RedditDBHelper(context, DATABASE_VERSION);
+        SQLiteDatabase db = bdHelper.getReadableDatabase();
+
+        if (nextPost == -1) {
+            getTopPosts(listener, internet, context);
+        } else {
+            listener.nextPosts(Querys.getPosts(db, nextPost));
+            nextPost += QUANTYTI;
         }
     }
 }

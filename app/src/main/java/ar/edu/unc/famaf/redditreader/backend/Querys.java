@@ -57,7 +57,7 @@ public class Querys {
         db.delete(TABLE_NAME, null, null);
     }
 
-    public static List<PostModel> getPosts(SQLiteDatabase db) throws MalformedURLException {
+    public static List<PostModel> getPosts(SQLiteDatabase db, int inf) throws MalformedURLException {
         ArrayList<PostModel> list = new ArrayList<>();
         String mTitle;
         String mAuthor;
@@ -65,7 +65,7 @@ public class Querys {
         String mSub;
         int mNumberOfComents;
         String mImage;
-        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
+        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME +  " LIMIT " +Integer.toString(inf) + ", 5", null);
         if (c.moveToFirst()) {
             do {
                 mTitle = c.getString(c.getColumnIndex(TITLE));
@@ -77,7 +77,8 @@ public class Querys {
                 try {
                     list.add(new PostModel(mTitle, mAuthor, mDate, mSub, mNumberOfComents, new URL(mImage)));
                 } catch (MalformedURLException e) {
-                    e.printStackTrace();
+                    list.add(new PostModel(mTitle, mAuthor, mDate, mSub, mNumberOfComents, null));
+
                 }
             } while (c.moveToNext());
         }
@@ -117,6 +118,8 @@ public class Querys {
 
     // Dado un url trae el bitmap correspondiente al mismo.
     public static Bitmap get_image(SQLiteDatabase bd, URL url) {
+        if(url == null)
+            return null;
         Bitmap result = null;
         String whereClause = IMAGE_URL + "= \"" + url.toString()+ "\"";
         Cursor c = bd.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + whereClause +";", null);

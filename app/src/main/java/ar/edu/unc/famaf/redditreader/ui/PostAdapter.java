@@ -27,9 +27,6 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 import static ar.edu.unc.famaf.redditreader.backend.Querys.get_image;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATABASE_VERSION;
 
-/**
- * Created by agustin on 10/10/16.
- */
 
 public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
 
