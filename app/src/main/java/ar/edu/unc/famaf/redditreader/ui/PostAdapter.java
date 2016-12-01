@@ -41,7 +41,6 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
    }
 
 
-
     private List<PostModel> myPostModelList;
 
     public PostAdapter(Context context, int resourse, List<PostModel> pos){
@@ -101,8 +100,12 @@ public class PostAdapter extends android.widget.ArrayAdapter<PostModel> {
         URL[] urls = new URL[1];
         urls[0] = postModel.getmImage();
         Bitmap bitmap = get_image(dbW, urls[0]);
-        if(bitmap == null)
+        if(bitmap == null) {
+            viewHolder.Image.setVisibility(View.GONE);
+            viewHolder.Progress.setVisibility(View.VISIBLE);
+            viewHolder.Image.setImageBitmap(null);
             dw.execute(urls);
+        }
         else{
             viewHolder.Image.setVisibility(View.VISIBLE);
             viewHolder.Progress.setVisibility(View.GONE);

@@ -20,10 +20,10 @@ public class Parser {
 
     public Listing readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-        Listing list ;
+        Listing list;
         try {
             list = readListingArray(reader);
-        } catch (IOException e){
+        } catch (IOException e) {
             reader.close();
             throw new IOException(e);
         }
@@ -39,11 +39,10 @@ public class Parser {
             reader.beginObject();
             while (reader.hasNext()) {
                 name = reader.nextName();
-                if(name.equals("data")) {
+                if (name.equals("data")) {
                     reader.beginObject();
                     break;
-                }
-                else
+                } else
                     reader.skipValue();
             }
             while (reader.hasNext()) {
@@ -76,12 +75,12 @@ public class Parser {
     }
 
 
-    private List<PostModel> readChildren(JsonReader reader)  throws IOException {
+    private List<PostModel> readChildren(JsonReader reader) throws IOException {
         ArrayList<PostModel> children = new ArrayList<PostModel>();
-        PostModel post= null;
+        PostModel post = null;
         try {
             reader.beginArray();
-            while (reader.hasNext()){
+            while (reader.hasNext()) {
                 post = extractPost(reader);
                 children.add(post);
             }
@@ -92,7 +91,7 @@ public class Parser {
         }
     }
 
-    private PostModel extractPost(JsonReader reader)throws IOException {
+    private PostModel extractPost(JsonReader reader) throws IOException {
         String line;
         String title = null;
         String author = null;
@@ -100,18 +99,19 @@ public class Parser {
         String sub = null;
         int numberOfComments = 0;
         URL image = null;
+        URL urlPage = null;
+        String post_hint = null;
         try {
             reader.beginObject();
             while (reader.hasNext()) {
                 line = reader.nextName();
-                if(line.equals("data")) {
+                if (line.equals("data")) {
                     reader.beginObject();
                     break;
-                }
-                else
+                } else
                     reader.skipValue();
             }
-            while (reader.hasNext()){
+            while (reader.hasNext()) {
                 line = reader.nextName();
                 switch (line) {
                     case "title":
@@ -122,7 +122,7 @@ public class Parser {
                         break;
                     case "created_utc":
                         long fse = reader.nextLong();
-                        fse = fse*1000;
+                        fse = fse * 1000;
                         date = fse;
                         break;
                     case "subreddit":
@@ -134,10 +134,19 @@ public class Parser {
                     case "thumbnail":
                         try {
                             image = new URL(reader.nextString());
-                        } catch (MalformedURLException e){
+                        } catch (MalformedURLException e) {
                             image = null;
                         }
-
+                        break;
+                    case "url":
+                        try {
+                            urlPage = new URL(reader.nextString());
+                        } catch (MalformedURLException e) {
+                            urlPage = null;
+                        }
+                        break;
+                    case "post_hint":
+                        post_hint = reader.nextString();
                         break;
                     default:
                         reader.skipValue();
@@ -146,10 +155,9 @@ public class Parser {
             }
             reader.endObject();
             reader.endObject();
-            return new PostModel(title,author, date,sub,numberOfComments,image);
+            return new PostModel(title, urlPage, image, numberOfComments, sub, date, author, post_hint);
         } catch (IOException e) {
             throw new IOException(e);
         }
     }
 }
-

@@ -1,46 +1,25 @@
 package ar.edu.unc.famaf.redditreader.model;
 
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
+import java.io.Serializable;
 import java.net.URL;
-import java.util.Date;
-import java.util.StringTokenizer;
 
-public class PostModel  {
+
+public class PostModel implements Serializable {
     private String mTitle;
     private String mAuthor;
     private long mDate;
     private String mSub;
-    private int mNumberOfComments;
-    private URL mImage;
 
-
-    public PostModel(String mTitle, String mAuthor, long mDate, String mSub,
-                     int mNumberOfComments, URL mImage) {
-        this.mTitle = mTitle;
-        this.mAuthor = mAuthor;
-        this.mDate = mDate;
-        this.mSub = mSub;
-        this.mNumberOfComments = mNumberOfComments;
-        this.mImage = mImage;
+    public String getmPostHint() {
+        return mPostHint;
     }
 
-    public String getmSub() {
-        return mSub;
+    public void setmPostHint(String mPostHint) {
+        this.mPostHint = mPostHint;
     }
 
-    public void setmSub(String mSub) {
-        this.mSub = mSub;
-    }
-
-    public PostModel(String mSub) {
-        this.mSub = mSub;
-    }
+    private String mPostHint;
 
     public String getmTitle() {
         return mTitle;
@@ -66,6 +45,14 @@ public class PostModel  {
         this.mDate = mDate;
     }
 
+    public String getmSub() {
+        return mSub;
+    }
+
+    public void setmSub(String mSub) {
+        this.mSub = mSub;
+    }
+
     public int getmNumberOfComments() {
         return mNumberOfComments;
     }
@@ -81,5 +68,30 @@ public class PostModel  {
     public void setmImage(URL mImage) {
         this.mImage = mImage;
     }
+
+    public URL getmUrlPage() {
+        return mUrlPage;
+    }
+
+    public void setmUrlPage(URL mUrlPage) {
+        this.mUrlPage = mUrlPage;
+    }
+
+    private int mNumberOfComments;
+    private URL mImage;
+    private URL mUrlPage;
+
+    public PostModel(String mTitle, URL mUrlPage, URL mImage, int mNumberOfComments, String mSub,
+                     long mDate, String mAuthor, String mPostHint) {
+        this.mTitle = mTitle;
+        this.mUrlPage = mUrlPage;
+        this.mImage = mImage;
+        this.mNumberOfComments = mNumberOfComments;
+        this.mSub = mSub;
+        this.mDate = mDate;
+        this.mAuthor = mAuthor;
+        this.mPostHint = mPostHint;
+    }
+
 
 }

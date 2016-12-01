@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="95a9590e03514fbe62fddc4f56f5dbd55fe3b60d">
+        sha1="a2cc96ac2c6d55125cc250bcd63d6d0dbd0f8274">
         <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/instant-run_99fca572adec1fddc2c5aaf4a541c4df9bc5e154.jar" />
     </item>
     <item
@@ -178,7 +178,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="691d34622a07dcb855e8d41ff278d7fbd1ea5377">
+        sha1="d03e3f8fa6f18614c7cf7d805e8af3071ab9810f">
         <dex dex="/home/agustin/AndroidStudioProjects/RedditRead_new/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_c609d15fb477e752aeea03705e9afa5a58a7805f.jar" />
     </item>
     <item

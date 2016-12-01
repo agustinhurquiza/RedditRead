@@ -14,8 +14,10 @@ public class RedditDBHelper extends SQLiteOpenHelper {
     public static final String DATE = "date";
     public static final String SUB = "sub";
     public static final String NCOMENT = "ncoment";
-    public static final String IMAGE_URL = "image_url";
+    public static final String THUMBNAIL = "thumbnail";
     public static final String IMAGE_BITMAP ="image_bitmap";
+    public static final String URL_PAGE = "url_page";
+    public static final String POST_HINT = "post_hint";
     public static final int DATABASE_VERSION = 1;
 
     public RedditDBHelper(Context context, int version) {
@@ -31,7 +33,10 @@ public class RedditDBHelper extends SQLiteOpenHelper {
                                 + DATE + " integer no null, "
                                 + SUB + " text no null, "
                                 + IMAGE_BITMAP + " blob, "
-                                + NCOMENT + " integer no null, " + IMAGE_URL + " text );";
+                                + NCOMENT + " integer no null, "
+                                + URL_PAGE + " text, "
+                                + POST_HINT + " text, "
+                                + THUMBNAIL + " text );";
         db.execSQL(createSentence);
     }
 

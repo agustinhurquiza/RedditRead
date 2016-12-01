@@ -19,11 +19,13 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.AUTHOR;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.DATE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_BITMAP;
-import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.IMAGE_URL;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.POST_HINT;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.THUMBNAIL;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.NCOMENT;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.SUB;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TABLE_NAME;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TITLE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.URL_PAGE;
 
 public class Querys {
 
@@ -41,13 +43,20 @@ public class Querys {
             String mImage = null;
             if(list.get(i).getmImage() != null)
                 mImage = list.get(i).getmImage().toString();
+            String mUrlPage = null;
+            if(list.get(i).getmUrlPage() != null)
+                mUrlPage = list.get(i).getmUrlPage().toString();
+            String post_hint = list.get(i).getmPostHint();
 
             values.put(TITLE, mTitle);
             values.put(AUTHOR, mAuthor);
             values.put(DATE, mDate);
             values.put(SUB, mSub);
             values.put(NCOMENT, mNumberOfComments);
-            values.put(IMAGE_URL, mImage);
+            values.put(THUMBNAIL, mImage);
+            values.put(POST_HINT, post_hint);
+            values.put(URL_PAGE, mUrlPage);
+
             db.insert(TABLE_NAME, null, values);
         }
 
@@ -65,6 +74,9 @@ public class Querys {
         String mSub;
         int mNumberOfComents;
         String mImage;
+        String mUrlPage = null;
+        String mPost_hint;
+
         Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME +  " LIMIT " +Integer.toString(inf) + ", 5", null);
         if (c.moveToFirst()) {
             do {
@@ -73,13 +85,22 @@ public class Querys {
                 mDate = c.getLong(c.getColumnIndex(DATE));
                 mSub = c.getString(c.getColumnIndex(SUB));
                 mNumberOfComents = c.getInt(c.getColumnIndex(NCOMENT));
-                mImage = c.getString(c.getColumnIndex(IMAGE_URL));
-                try {
-                    list.add(new PostModel(mTitle, mAuthor, mDate, mSub, mNumberOfComents, new URL(mImage)));
-                } catch (MalformedURLException e) {
-                    list.add(new PostModel(mTitle, mAuthor, mDate, mSub, mNumberOfComents, null));
+                mImage = c.getString(c.getColumnIndex(THUMBNAIL));
+                mPost_hint = c.getString(c.getColumnIndex(POST_HINT));
 
+                PostModel post =  new PostModel(mTitle ,null, null,mNumberOfComents,mSub,mDate,mAuthor, mPost_hint);
+                try {
+                    post.setmImage(new URL(mImage));
+                } catch (MalformedURLException e) {
+                    post.setmImage(null);
                 }
+                mUrlPage = c.getString(c.getColumnIndex(URL_PAGE));
+                try {
+                    post.setmUrlPage(new URL(mUrlPage));
+                } catch (MalformedURLException e) {
+                    post.setmUrlPage(null);
+                }
+                list.add(post);
             } while (c.moveToNext());
         }
         c.close();
@@ -99,7 +120,7 @@ public class Querys {
 
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,0, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream);
         return stream.toByteArray();
     }
 
@@ -112,7 +133,7 @@ public class Querys {
        ContentValues values = new ContentValues();
        values.put(RedditDBHelper.IMAGE_BITMAP, getBytes(bitmap));
 
-       String whereClause = IMAGE_URL + "=\"" + url.toString()+ "\";";
+       String whereClause = THUMBNAIL + "=\"" + url.toString()+ "\";";
        bd.update(RedditDBHelper.TABLE_NAME, values, whereClause, null);
    }
 
@@ -121,7 +142,7 @@ public class Querys {
         if(url == null)
             return null;
         Bitmap result = null;
-        String whereClause = IMAGE_URL + "= \"" + url.toString()+ "\"";
+        String whereClause = THUMBNAIL + "= \"" + url.toString()+ "\"";
         Cursor c = bd.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + whereClause +";", null);
         if (!c.moveToFirst()) {
             c.close();

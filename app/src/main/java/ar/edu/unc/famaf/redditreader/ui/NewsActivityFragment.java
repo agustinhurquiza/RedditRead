@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 
@@ -39,6 +40,7 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
     ListView list = null;
     ArrayList postLst;
     PostAdapter adapter;
+    Activity activity;
 
     private boolean isOnline() {
         ConnectivityManager cm =
@@ -47,8 +49,21 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity){
+            activity=(Activity) context;
+        }
+    }
+
     public NewsActivityFragment() {
     }
+
+    public interface OnPostItemSelectedListener{
+        void onPostItemPicked(PostModel post);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,6 +85,17 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
                     return true;
                 }
             });
+
+           list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+               @Override
+               public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                   try {
+                       ((NewsActivity) activity).onPostItemPicked((PostModel) postLst.get(position));
+                   } catch (ClassCastException cce) {
+                   }
+               }
+           });
+
 
             try {
                 backend.getNextPosts(this, getContext(), internet);
