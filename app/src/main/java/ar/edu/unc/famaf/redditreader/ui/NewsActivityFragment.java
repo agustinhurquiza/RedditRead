@@ -41,6 +41,7 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
     ArrayList postLst;
     PostAdapter adapter;
     Activity activity;
+    String type = "new";
 
     private boolean isOnline() {
         ConnectivityManager cm =
@@ -57,9 +58,6 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
         }
     }
 
-    public NewsActivityFragment() {
-    }
-
     public interface OnPostItemSelectedListener{
         void onPostItemPicked(PostModel post);
     }
@@ -71,14 +69,14 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
         View rootview = inflater.inflate(R.layout.fragment_news, container, false);
         final  RedditDBHelper bdHelper = new RedditDBHelper(getContext(), DATABASE_VERSION);
         final SQLiteDatabase db = bdHelper.getWritableDatabase();
-        if (internet || Querys.is_empty(db)) {
+        if (internet || Querys.is_empty(db, type)) {
             final Backend backend = Backend.getInstance();
             list = (ListView) rootview.findViewById(R.id.post);
             list.setOnScrollListener(new EndlessScrollListener() {
                 @Override
                 public boolean onLoadMore(int page, int totalItemsCount) {
                     try {
-                        backend.getNextPosts(NewsActivityFragment.this, getContext(), internet);
+                        backend.getNextPosts(NewsActivityFragment.this, getContext(), internet, type);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -98,7 +96,7 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
 
 
             try {
-                backend.getNextPosts(this, getContext(), internet);
+                backend.getNextPosts(this, getContext(), internet, type);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }

@@ -10,6 +10,18 @@ public class PostModel implements Serializable {
     private String mAuthor;
     private long mDate;
     private String mSub;
+    private int mNumberOfComments;
+    private URL mImage;
+    private URL mUrlPage;
+    private String mtype;
+
+    public String getMtype() {
+        return mtype;
+    }
+
+    public void setMtype(String mtype) {
+        this.mtype = mtype;
+    }
 
     public String getmPostHint() {
         return mPostHint;
@@ -77,12 +89,8 @@ public class PostModel implements Serializable {
         this.mUrlPage = mUrlPage;
     }
 
-    private int mNumberOfComments;
-    private URL mImage;
-    private URL mUrlPage;
-
     public PostModel(String mTitle, URL mUrlPage, URL mImage, int mNumberOfComments, String mSub,
-                     long mDate, String mAuthor, String mPostHint) {
+                     long mDate, String mAuthor, String mPostHint, String mtype) {
         this.mTitle = mTitle;
         this.mUrlPage = mUrlPage;
         this.mImage = mImage;
@@ -91,6 +99,7 @@ public class PostModel implements Serializable {
         this.mDate = mDate;
         this.mAuthor = mAuthor;
         this.mPostHint = mPostHint;
+        this.mtype = mtype;
     }
 
 

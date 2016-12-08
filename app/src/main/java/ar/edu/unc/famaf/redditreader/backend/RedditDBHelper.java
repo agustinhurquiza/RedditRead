@@ -18,6 +18,8 @@ public class RedditDBHelper extends SQLiteOpenHelper {
     public static final String IMAGE_BITMAP ="image_bitmap";
     public static final String URL_PAGE = "url_page";
     public static final String POST_HINT = "post_hint";
+    public static final String TYPE = "type";
+
     public static final int DATABASE_VERSION = 1;
 
     public RedditDBHelper(Context context, int version) {
@@ -36,6 +38,7 @@ public class RedditDBHelper extends SQLiteOpenHelper {
                                 + NCOMENT + " integer no null, "
                                 + URL_PAGE + " text, "
                                 + POST_HINT + " text, "
+                                + TYPE + " text, "
                                 + THUMBNAIL + " text );";
         db.execSQL(createSentence);
     }

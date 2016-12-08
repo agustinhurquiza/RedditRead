@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.NCOMENT;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.SUB;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TABLE_NAME;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TITLE;
+import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.TYPE;
 import static ar.edu.unc.famaf.redditreader.backend.RedditDBHelper.URL_PAGE;
 
 public class Querys {
@@ -47,6 +49,7 @@ public class Querys {
             if(list.get(i).getmUrlPage() != null)
                 mUrlPage = list.get(i).getmUrlPage().toString();
             String post_hint = list.get(i).getmPostHint();
+            String type = list.get(i).getMtype();
 
             values.put(TITLE, mTitle);
             values.put(AUTHOR, mAuthor);
@@ -56,17 +59,18 @@ public class Querys {
             values.put(THUMBNAIL, mImage);
             values.put(POST_HINT, post_hint);
             values.put(URL_PAGE, mUrlPage);
+            values.put(TYPE, type);
 
             db.insert(TABLE_NAME, null, values);
         }
 
     }
 
-    public static void delete_posts(SQLiteDatabase db){
-        db.delete(TABLE_NAME, null, null);
+    public static void delete_posts(SQLiteDatabase db, String type){
+        db.delete(TABLE_NAME, TYPE + " = \"" + type + "\"", null);
     }
 
-    public static List<PostModel> getPosts(SQLiteDatabase db, int inf) throws MalformedURLException {
+    public static List<PostModel> getPosts(SQLiteDatabase db, int inf, String type) throws MalformedURLException {
         ArrayList<PostModel> list = new ArrayList<>();
         String mTitle;
         String mAuthor;
@@ -76,8 +80,10 @@ public class Querys {
         String mImage;
         String mUrlPage = null;
         String mPost_hint;
+        String mType;
 
-        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME +  " LIMIT " +Integer.toString(inf) + ", 5", null);
+        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + TYPE + " = \"" + type +
+                               "\" LIMIT " +Integer.toString(inf) + ", 5", null);
         if (c.moveToFirst()) {
             do {
                 mTitle = c.getString(c.getColumnIndex(TITLE));
@@ -87,8 +93,9 @@ public class Querys {
                 mNumberOfComents = c.getInt(c.getColumnIndex(NCOMENT));
                 mImage = c.getString(c.getColumnIndex(THUMBNAIL));
                 mPost_hint = c.getString(c.getColumnIndex(POST_HINT));
+                mType = c.getString(c.getColumnIndex(TYPE));
 
-                PostModel post =  new PostModel(mTitle ,null, null,mNumberOfComents,mSub,mDate,mAuthor, mPost_hint);
+                PostModel post =  new PostModel(mTitle ,null, null,mNumberOfComents,mSub,mDate,mAuthor, mPost_hint, mType);
                 try {
                     post.setmImage(new URL(mImage));
                 } catch (MalformedURLException e) {
@@ -108,8 +115,9 @@ public class Querys {
     }
 
     // Chequea si la base de datos es vacia.
-    public static boolean is_empty(SQLiteDatabase db){
-        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
+    public static boolean is_empty(SQLiteDatabase db, String type){
+        Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + TYPE + " = \"" + type +
+                "\"", null);
         if (c.moveToFirst()) {
             c.close();
             return true;

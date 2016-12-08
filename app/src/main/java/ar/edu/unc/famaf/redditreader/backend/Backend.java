@@ -26,26 +26,39 @@ public class Backend {
 
     }
 
-    public void getTopPosts(final PostsIteratorListener listener, boolean internet, Context context) throws MalformedURLException {
+    public void getTopPosts(final PostsIteratorListener listener, boolean internet, Context context,
+                            final String type) throws MalformedURLException {
         URL[] urls = new URL[1];
         final RedditDBHelper bdHelper = new RedditDBHelper(context, DATABASE_VERSION);
         final SQLiteDatabase dbR = bdHelper.getReadableDatabase();
         final SQLiteDatabase dbW = bdHelper.getWritableDatabase();
+        final String mtype = type;
         if (internet) {
             try {
-                urls[0] = new URL("https://www.reddit.com/top/.json?limit=50");
+                if(type == "top")
+                    urls[0] = new URL("https://www.reddit.com/top/.json?limit=50");
+                else if(type == "new")
+                    urls[0] = new URL("https://www.reddit.com/new/.json?limit=50");
+                else
+                    urls[0] = new URL("https://www.reddit.com/hot/.json?limit=50");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
 
             new GetTopPostsTask() {
+
+                @Override
+                protected void onPreExecute() {
+                    setType(mtype);
+                }
+
                 @Override
                 protected void onPostExecute(Listing listing) {
                     if (listing != null)
                         try {
-                            Querys.delete_posts(dbW);
+                            Querys.delete_posts(dbW, type);
                             Querys.insert_posts(dbW, listing);
-                            List<PostModel> list = Querys.getPosts(dbR, 0);
+                            List<PostModel> list = Querys.getPosts(dbR, 0, mtype);
                             nextPost = QUANTYTI;
                             listing.setPosts(list);
                             listener.setAdapter(list);
@@ -60,7 +73,7 @@ public class Backend {
             }.execute(urls);
 
         } else {
-            List<PostModel> list = Querys.getPosts(dbR, 0);
+            List<PostModel> list = Querys.getPosts(dbR, 0, type);
             Listing listing = new Listing("0","0",list);
             listener.setAdapter(list);
             nextPost = QUANTYTI;
@@ -69,14 +82,15 @@ public class Backend {
     }
 
 
-    public void getNextPosts(final PostsIteratorListener listener, Context context, boolean internet) throws MalformedURLException {
+    public void getNextPosts(final PostsIteratorListener listener, Context context, boolean internet,
+                             String type) throws MalformedURLException {
         final  RedditDBHelper bdHelper = new RedditDBHelper(context, DATABASE_VERSION);
         SQLiteDatabase db = bdHelper.getReadableDatabase();
 
         if (nextPost == -1) {
-            getTopPosts(listener, internet, context);
+            getTopPosts(listener, internet, context, type);
         } else {
-            listener.nextPosts(Querys.getPosts(db, nextPost));
+            listener.nextPosts(Querys.getPosts(db, nextPost, type));
             nextPost += QUANTYTI;
         }
     }

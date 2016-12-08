@@ -7,9 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import java.io.Serializable;
+import android.widget.TabHost;
 
 import ar.edu.unc.famaf.redditreader.R;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
@@ -23,6 +21,28 @@ public class NewsActivity extends AppCompatActivity  implements NewsActivityFrag
         setContentView(R.layout.activity_news);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        TabHost tabHost = (TabHost)findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        //Top
+        TabHost.TabSpec spec = tabHost.newTabSpec("Top");
+        spec.setContent(R.id.host_top);
+        spec.setIndicator("Top");
+        tabHost.addTab(spec);
+
+        //New
+        spec = tabHost.newTabSpec("New");
+        spec.setContent(R.id.host_new);
+        spec.setIndicator("New");
+        tabHost.addTab(spec);
+
+
+        //Hot
+        spec = tabHost.newTabSpec("Hot");
+        spec.setContent(R.id.host_hot);
+        spec.setIndicator("Hot");
+        tabHost.addTab(spec);
     }
 
     @Override
@@ -34,14 +54,6 @@ public class NewsActivity extends AppCompatActivity  implements NewsActivityFrag
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_sign_in) {
-            //TextView textView = (TextView) findViewById(R.id.loginStatusTextView);
-            //textView.setText("User XXXX logged in");
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -51,4 +63,6 @@ public class NewsActivity extends AppCompatActivity  implements NewsActivityFrag
         intent.putExtra("post", post);
         startActivity(intent);
     }
+
+
 }

@@ -10,7 +10,11 @@ import java.net.URL;
 import ar.edu.unc.famaf.redditreader.model.Listing;
 
 public class GetTopPostsTask extends AsyncTask<URL, Integer, Listing>{
+    private  String mtype;
 
+    public void setType(String type) {
+        mtype = type;
+    }
     @Override
     protected Listing doInBackground(URL... params) {
         InputStream jsonStream = null;
@@ -26,7 +30,7 @@ public class GetTopPostsTask extends AsyncTask<URL, Integer, Listing>{
         }
         if (jsonStream != null)
             try {
-                list = new Parser().readJsonStream(jsonStream);
+                list = new Parser().readJsonStream(jsonStream, mtype);
             } catch (IOException e) {
                 e.printStackTrace();
             }

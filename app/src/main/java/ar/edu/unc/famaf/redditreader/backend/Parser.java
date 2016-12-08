@@ -18,11 +18,11 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 
 public class Parser {
 
-    public Listing readJsonStream(InputStream in) throws IOException {
+    public Listing readJsonStream(InputStream in, String type) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         Listing list;
         try {
-            list = readListingArray(reader);
+            list = readListingArray(reader, type);
         } catch (IOException e) {
             reader.close();
             throw new IOException(e);
@@ -30,7 +30,7 @@ public class Parser {
         return list;
     }
 
-    private Listing readListingArray(JsonReader reader) throws IOException {
+    private Listing readListingArray(JsonReader reader, String type) throws IOException {
         List<PostModel> children = null;
         String name;
         String before = "";
@@ -49,7 +49,7 @@ public class Parser {
                 name = reader.nextName();
                 switch (name) {
                     case "children":
-                        children = readChildren(reader);
+                        children = readChildren(reader, type);
                         break;
                     case "after":
                         after = reader.nextString();
@@ -75,13 +75,13 @@ public class Parser {
     }
 
 
-    private List<PostModel> readChildren(JsonReader reader) throws IOException {
+    private List<PostModel> readChildren(JsonReader reader, String type) throws IOException {
         ArrayList<PostModel> children = new ArrayList<PostModel>();
         PostModel post = null;
         try {
             reader.beginArray();
             while (reader.hasNext()) {
-                post = extractPost(reader);
+                post = extractPost(reader, type);
                 children.add(post);
             }
             reader.endArray();
@@ -91,7 +91,7 @@ public class Parser {
         }
     }
 
-    private PostModel extractPost(JsonReader reader) throws IOException {
+    private PostModel extractPost(JsonReader reader, String type) throws IOException {
         String line;
         String title = null;
         String author = null;
@@ -155,7 +155,7 @@ public class Parser {
             }
             reader.endObject();
             reader.endObject();
-            return new PostModel(title, urlPage, image, numberOfComments, sub, date, author, post_hint);
+            return new PostModel(title, urlPage, image, numberOfComments, sub, date, author, post_hint, type);
         } catch (IOException e) {
             throw new IOException(e);
         }
