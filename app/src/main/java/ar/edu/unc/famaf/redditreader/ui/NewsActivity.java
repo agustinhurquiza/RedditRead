@@ -2,12 +2,12 @@ package ar.edu.unc.famaf.redditreader.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TabHost;
 
 import ar.edu.unc.famaf.redditreader.R;
 import ar.edu.unc.famaf.redditreader.model.PostModel;
@@ -15,34 +15,22 @@ import ar.edu.unc.famaf.redditreader.model.PostModel;
 
 public class NewsActivity extends AppCompatActivity  implements NewsActivityFragment.OnPostItemSelectedListener{
 
+    private FragmentTabHost mTabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TabHost tabHost = (TabHost)findViewById(R.id.tabHost);
-        tabHost.setup();
+        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        //Top
-        TabHost.TabSpec spec = tabHost.newTabSpec("Top");
-        spec.setContent(R.id.host_top);
-        spec.setIndicator("Top");
-        tabHost.addTab(spec);
-
-        //New
-        spec = tabHost.newTabSpec("New");
-        spec.setContent(R.id.host_new);
-        spec.setIndicator("New");
-        tabHost.addTab(spec);
-
-
-        //Hot
-        spec = tabHost.newTabSpec("Hot");
-        spec.setContent(R.id.host_hot);
-        spec.setIndicator("Hot");
-        tabHost.addTab(spec);
+        mTabHost.addTab(mTabHost.newTabSpec("hot").setIndicator("hot", null), NewsActivityFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("top").setIndicator("top", null), NewsActivityFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("new").setIndicator("new", null), NewsActivityFragment.class, null);
     }
 
     @Override

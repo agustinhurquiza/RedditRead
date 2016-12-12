@@ -116,6 +116,8 @@ public class Querys {
 
     // Chequea si la base de datos es vacia.
     public static boolean is_empty(SQLiteDatabase db, String type){
+        if(type == null)
+            return true;
         Cursor c = db.rawQuery(" SELECT * FROM " + TABLE_NAME + " WHERE " + TYPE + " = \"" + type +
                 "\"", null);
         if (c.moveToFirst()) {

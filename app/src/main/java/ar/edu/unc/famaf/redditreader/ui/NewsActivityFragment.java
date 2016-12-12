@@ -41,7 +41,7 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
     ArrayList postLst;
     PostAdapter adapter;
     Activity activity;
-    String type = "new";
+    String type = null;
 
     private boolean isOnline() {
         ConnectivityManager cm =
@@ -69,6 +69,8 @@ public class NewsActivityFragment extends Fragment implements PostsIteratorListe
         View rootview = inflater.inflate(R.layout.fragment_news, container, false);
         final  RedditDBHelper bdHelper = new RedditDBHelper(getContext(), DATABASE_VERSION);
         final SQLiteDatabase db = bdHelper.getWritableDatabase();
+        type = this.getTag();
+        setRetainInstance(true);
         if (internet || Querys.is_empty(db, type)) {
             final Backend backend = Backend.getInstance();
             list = (ListView) rootview.findViewById(R.id.post);
